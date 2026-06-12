@@ -1,396 +1,281 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saab Petroleum | Lebanon's Premier Fuel Provider</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Quiz SVT - La Méduse Aurélia</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e8f0;
+        }
+
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            background: none;
+            border: 1px solid #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+            color: var(--text);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #f1f5f9;
+            border-color: var(--secondary);
+        }
+
+        .option-btn.correct {
+            background-color: #ecfdf5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        .option-btn.incorrect {
+            background-color: #fef2f2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .action-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .results h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> 01 746 474</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Beirut, Lebanon</span>
-                </div>
-                <div class="social-links">
-                    <a href="https://facebook.com/SaabPetroleumlb" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/saabpetroleumlb" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <nav class="navbar">
-            <div class="container">
-                <a href="#" class="logo">SAAB <span>PETROLEUM</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#branches">Branches</a></li>
-                    <li><a href="#careers">Careers</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="auth-buttons">
-                    <button id="loginBtn">Login</button>
-                    <button id="signupBtn">Sign Up</button>
-                </div>
-                <div class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>FUELING LEBANON'S FUTURE</h1>
-            <p>Premium petroleum products and services since 2020</p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn primary">Our Services</a>
-                <a href="#careers" class="btn secondary">Join Our Team</a>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+        <header>
+            <h1>Quiz SVT : La Méduse Aurélia</h1>
+            <p>Par Omar Chaar, Lamar Bsat & Sirine Betto</p>
+        </header>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title">About Saab Petroleum</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Saab Petroleum is a Lebanon-based, full-service petroleum company founded in 2020. We are committed to providing quality fuel and exceptional service to our customers across Beirut.</p>
-                    <p>With our 24/7 fuel stations in Badaro, Hamra, and Zaidaniyeh, we ensure that you never run out of fuel when you need it most. Our mission is to fuel Lebanon's progress with reliability and excellence.</p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <h3>3</h3>
-                            <p>Locations</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>24/7</h3>
-                            <p>Service</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>1000+</h3>
-                            <p>Daily Customers</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://via.placeholder.com/600x400?text=Saab+Petroleum+Team" alt="Saab Petroleum Team">
-                </div>
+        <main class="quiz-card" id="quiz-box">
+            <div id="quiz-ui">
+                <div class="question" id="question-text">Chargement de la question...</div>
+                <div class="options-list" id="options-box"></div>
+                <button class="action-btn" id="next-btn" style="display: none;">Question suivante</button>
             </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">Premium fuel and convenience services for all your needs</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-gas-pump"></i>
-                    </div>
-                    <h3>Retail Gasoline & Diesel</h3>
-                    <p>Top-quality fuel available 24/7 at all our locations. We guarantee purity and performance for your vehicle.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3>Bulk Diesel & Water Delivery</h3>
-                    <p>Reliable bulk delivery services for industrial and commercial needs. Scheduled or on-demand service.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h3>Car Wash Services</h3>
-                    <p>Professional interior and exterior cleaning to keep your vehicle looking its best. Express and premium options available.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>Pump & Munch</h3>
-                    <p>Convenience stores offering snacks, beverages, and essentials at all our locations. Grab and go!</p>
-                </div>
+            <div id="result-ui" class="results" style="display: none;">
+                <h2>Évaluation Terminée</h2>
+                <div class="score" id="final-score">0 / 0</div>
+                <button class="action-btn" onclick="resetQuiz()">Recommencer le test</button>
             </div>
-        </div>
-    </section>
+        </main>
 
-    <!-- Branches Section -->
-    <section id="branches" class="section branches">
-        <div class="container">
-            <h2 class="section-title">Our Branches</h2>
-            <p class="section-subtitle">Visit us at one of our convenient locations</p>
-            
-            <div class="branches-container">
-                <div class="branch-card">
-                    <h3>Badaro, Beirut</h3>
-                    <p>Near McDonald's</p>
-                    <div class="branch-hours">
-                        <p><strong>Hours:</strong> 24/7</p>
-                    </div>
-                </div>
-                
-                <div class="branch-card">
-                    <h3>Hamra, Beirut</h3>
-                    <p>Near Central Bank</p>
-                    <div class="branch-hours">
-                        <p><strong>Hours:</strong> 24/7</p>
-                    </div>
-                </div>
-                
-                <div class="branch-card">
-                    <h3>Zaidaniyeh, Beirut</h3>
-                    <p>Near Al-Farooq Mosque</p>
-                    <div class="branch-hours">
-                        <p><strong>Hours:</strong> 24/7</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="map-container">
-                <div class="map-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <p>Beirut Branches Map</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Careers Section -->
-    <section id="careers" class="section careers">
-        <div class="container">
-            <h2 class="section-title">Career Opportunities</h2>
-            <p class="section-subtitle">Join our growing team in the petroleum industry</p>
-            
-            <div class="careers-content">
-                <div class="careers-info">
-                    <h3>Why Work With Us?</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Competitive salaries and benefits</li>
-                        <li><i class="fas fa-check-circle"></i> Career growth opportunities</li>
-                        <li><i class="fas fa-check-circle"></i> Professional training programs</li>
-                        <li><i class="fas fa-check-circle"></i> Dynamic and supportive work environment</li>
-                    </ul>
-                    <p>We're always looking for passionate individuals to join our team. Whether you're interested in fuel services, retail, or management, we have opportunities for you.</p>
-                </div>
-                
-                <div class="careers-form">
-                    <h3>Apply Now</h3>
-                    <form id="applicationForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option value="" disabled selected>Position Applying For</option>
-                                <option value="station_attendant">Station Attendant</option>
-                                <option value="cashier">Cashier</option>
-                                <option value="manager">Station Manager</option>
-                                <option value="driver">Delivery Driver</option>
-                                <option value="car_wash">Car Wash Technician</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Tell us about yourself and experience..." rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="cv">Upload CV (PDF, DOC, DOCX)</label>
-                            <input type="file" id="cv" accept=".pdf,.doc,.docx">
-                        </div>
-                        <button type="submit" class="btn primary">Submit Application</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login to Your Account</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <div class="form-group remember">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-                <button type="submit" class="btn primary">Login</button>
-                <p class="register-link">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
-            </form>
-        </div>
+        <footer>
+            Projet de Sciences de la Vie et de la Terre — Classe de 5eC — 2026
+        </footer>
     </div>
 
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Create an Account</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="fullname">Full Name</label>
-                    <input type="text" id="fullname" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="new-username">Username</label>
-                    <input type="text" id="new-username" required>
-                </div>
-                <div class="form-group">
-                    <label for="new-password">Password</label>
-                    <input type="password" id="new-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="user-type">Account Type</label>
-                    <select id="user-type" required>
-                        <option value="customer">Customer</option>
-                        <option value="job_seeker">Job Seeker</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn primary">Create Account</button>
-                <p class="login-link">Already have an account? <a href="#" id="loginLink">Login</a></p>
-            </form>
-        </div>
-    </div>
+    <script>
+        const questions = [
+            {
+                q: "Quel est le mode de reproduction asexuée observé chez la méduse Aurélia ?",
+                options: ["Le bourgeonnement", "La strobilisation", "La division binaire"],
+                correct: 1
+            },
+            {
+                q: "À quel stade de développement la reproduction asexuée a-t-elle lieu ?",
+                options: ["Au stade de strobile (larve fixée)", "Au stade de méduse adulte", "Au stade d'œuf flottant"],
+                correct: 0
+            },
+            {
+                q: "Où se situe précisément le strobile dans son écosystème ?",
+                options: ["En pleine mer à la surface", "Fixé au fond de la mer", "À l'intérieur d'une autre méduse"],
+                correct: 1
+            },
+            {
+                q: "Quel est le résultat biologique de la division du strobile ?",
+                options: ["La production d'une seule méduse géante", "La production d'une centaine de jeunes méduses identiques", "La disparition de la colonie"],
+                correct: 1
+            },
+            {
+                q: "Quel est le principal avantage de ce mode de reproduction pour l'espèce ?",
+                options: ["Augmenter ses chances de reproduction et coloniser facilement le milieu", "Changer de régime alimentaire", "Résister aux variations de température"],
+                correct: 0
+            }
+        ];
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Have questions or need assistance? Reach out to our team.</p>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>01 746 474</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Beirut, Lebanon</p>
-                    </div>
-                    
-                    <div class="contact-social">
-                        <a href="https://facebook.com/SaabPetroleumlb" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/saabpetroleumlb" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+        let indexCurrent = 0;
+        let score = 0;
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-col">
-                    <h3>Saab Petroleum</h3>
-                    <p>Lebanon's premier provider of quality petroleum products and services since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#branches">Branches</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li><a href="#">Retail Fuel</a></li>
-                        <li><a href="#">Bulk Delivery</a></li>
-                        <li><a href="#">Car Wash</a></li>
-                        <li><a href="#">Pump & Munch</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> 01 746 474</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Beirut, Lebanon</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2023 Saab Petroleum. All Rights Reserved.</p>
-                <p>Designed with <i class="fas fa-heart"></i> for Lebanon</p>
-            </div>
-        </div>
-    </footer>
+        const qText = document.getElementById('question-text');
+        const oBox = document.getElementById('options-box');
+        const btnNext = document.getElementById('next-btn');
+        const uiQuiz = document.getElementById('quiz-ui');
+        const uiResult = document.getElementById('result-ui');
+        const txtScore = document.getElementById('final-score');
 
-    <script src="script.js"></script>
+        function startQuiz() {
+            indexCurrent = 0;
+            score = 0;
+            uiQuiz.style.display = 'block';
+            uiResult.style.display = 'none';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            btnNext.style.display = 'none';
+            oBox.innerHTML = '';
+            
+            let current = questions[indexCurrent];
+            qText.innerText = `${indexCurrent + 1}. ${current.q}`;
+
+            current.options.forEach((opt, idx) => {
+                const button = document.createElement('button');
+                button.innerText = opt;
+                button.classList.add('option-btn');
+                button.addEventListener('click', () => checkAnswer(button, idx));
+                oBox.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedBtn, idxOption) {
+            let current = questions[indexCurrent];
+            const allBtns = oBox.querySelectorAll('.option-btn');
+
+            allBtns.forEach(b => b.disabled = true);
+
+            if (idxOption === current.correct) {
+                selectedBtn.classList.add('correct');
+                score++;
+            } else {
+                selectedBtn.classList.add('incorrect');
+                allBtns[current.correct].classList.add('correct');
+            }
+
+            btnNext.style.display = 'block';
+        }
+
+        btnNext.addEventListener('click', () => {
+            indexCurrent++;
+            if (indexCurrent < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+
+        function showResults() {
+            uiQuiz.style.display = 'none';
+            uiResult.style.display = 'block';
+            txtScore.innerText = `${score} / ${questions.length}`;
+        }
+
+        function resetQuiz() {
+            startQuiz();
+        }
+
+        // Lancement automatique au chargement
+        startQuiz();
+    </script>
 </body>
 </html>
